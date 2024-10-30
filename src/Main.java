@@ -1,20 +1,59 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// Press Shift twice to open the Search Everywhere dialog and type show whitespaces,
 // then press Enter. You can now see whitespace characters in your code.
+
+import java.util.Scanner;
+//Esta libreria es para el almacenamiento de pares ordenados que serviran para las transiciones
+import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
+class Maquinaturing {
+    private static class maquinaTuring{
+        char leer;
+        char escribir;
+        char movimiento;
+        String sigmovimiento;
+
+        // Realizar el constructor es de maquinaTuring
+        public maquinaTuring(char leer, char escribir, char movimiento, String sigmovimiento){
+            this.leer = leer;
+            this.escribir=escribir;
+            this.movimiento=movimiento;
+            this.sigmovimiento=sigmovimiento;
+
+        }
+    }
+
+    private Map<String, Map<Character, maquinaTuring>>transiciones;
+    private String estadoInicial;//q1
+    private Set<String> estadoFinal;//le estamos diciendo que es un conjunto de estadosfinales
+    private char blanco ='%';
+
+    public Maquinaturing (String estadoInicial, Set<String> estadoFinal){
+        //Inicializacion del mapa de transisciones de pares ordenados con tabla de hash
+        this.transiciones= new HashMap<>();
+        this.estadoInicial=estadoInicial;
+        this.estadoFinal=estadoFinal;
+    }
+
+    //Metodo de Agregar Transiciones
+    public void añadir(String EstadoActual,char leer, char escribir, char movimiento, String EstadoSiguiente){
+        transiciones.putIfAbsent(EstadoActual, new HashMap<>());// verifica la exitencia del estado sino lo crea
+        transiciones.get(EstadoActual).put(leer, new maquinaTuring(leer, escribir, movimiento, EstadoSiguiente));// sirve para asginarle las condiciones al estado actual
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.print("Hello and welcome!");
-        System.out.print("Prueba no.1");
-        System.out.print("Prueba no.2");
-        System.out.print("Prueba no.3");
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
     }
 }
